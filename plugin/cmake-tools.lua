@@ -153,3 +153,32 @@ vim.api.nvim_create_user_command(
     desc = "CMake select launch target",
   }
 )
+
+--- Auto Commands ----
+local regen_group = vim.api.nvim_create_augroup("CMakeRegenOnSave", { clear = true })
+
+vim.api.nvim_create_autocmd("BufWritePost",
+  {
+    group = regen_group,
+    pattern = "CMakeLists.txt",
+    callback = function()
+      -- We only want to run after all modified CMakeLists have been saved so we check to
+      -- see if there are any modified CMakeLists.txt
+      local all_saved = true
+      local bufs = vim.api.nvim_list_bufs()
+      for _, buf in ipairs(bufs) do
+        if vim.api.nvim_buf_is_loaded(buf) == true then
+          local info = vim.fn.getbufvar(buf, "&")
+          if info and info.filetype == "cmake" and info.modified == 1 then
+            all_saved = false
+            break
+          end
+        end
+      end
+      if all_saved == true then
+        if vim.fn.confirm("All CMakeLists saved. Regenerate?", "&Yes\n&No", 1) == 1 then
+          cmake_tools.generate({})
+        end
+      end
+    end
+  })
