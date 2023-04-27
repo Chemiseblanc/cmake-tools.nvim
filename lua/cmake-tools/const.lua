@@ -5,6 +5,7 @@ local const = {
   cmake_generate_options = { "-DCMAKE_EXPORT_COMPILE_COMMANDS=1" }, -- it will be activated when invoke `cmake.generate`
   cmake_soft_link_compile_commands = true,
   cmake_compile_commands_from_preset = false,
+  cmake_generate_on_open = false,
   cmake_build_options = {},              -- it will be activated when invoke `cmake.build`
   cmake_console_position = "belowright", -- "bottom", "top"
   cmake_console_size = 10,

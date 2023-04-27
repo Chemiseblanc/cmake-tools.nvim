@@ -16,6 +16,11 @@ local cmake = {}
 function cmake.setup(values)
   const = vim.tbl_deep_extend("force", const, values)
   config = Config:new(const)
+
+  local presets_file = presets.check()
+  if presets_file and config.generate_on_open then
+    cmake.generate({})
+  end
 end
 
 --- Generate build system for this project.
