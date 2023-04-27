@@ -131,6 +131,9 @@ function utils.run(cmd, env, args, opts)
         if opts.on_success then
           opts.on_success()
         end
+        if opts.cmake_console_close_on_success then
+          utils.close_cmake_console()
+        end
       elseif opts.cmake_show_console == "only_on_error" then
         utils.show_cmake_console(opts.cmake_console_position, opts.cmake_console_size)
         vim.api.nvim_command("cbottom")
