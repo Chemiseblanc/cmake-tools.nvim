@@ -83,7 +83,8 @@ function cmake.generate(opt, callback)
       end,
       cmake_console_position = const.cmake_console_position,
       cmake_show_console = const.cmake_show_console,
-      cmake_console_size = const.cmake_console_size
+      cmake_console_size = const.cmake_console_size,
+      cmake_console_close_on_success = config.console_close_on_success,
     })
   end
 
@@ -136,7 +137,8 @@ function cmake.generate(opt, callback)
     end,
     cmake_console_position = const.cmake_console_position,
     cmake_show_console = const.cmake_show_console,
-    cmake_console_size = const.cmake_console_size
+    cmake_console_size = const.cmake_console_size,
+    cmake_console_close_on_success = config.console_close_on_success,
   })
 end
 
@@ -161,7 +163,8 @@ function cmake.clean(callback)
     end,
     cmake_console_position = const.cmake_console_position,
     cmake_show_console = const.cmake_show_console,
-    cmake_console_size = const.cmake_console_size
+    cmake_console_size = const.cmake_console_size,
+    cmake_console_close_on_success = config.console_close_on_success,
   })
 end
 
@@ -220,7 +223,8 @@ function cmake.build(opt, callback)
       end,
       cmake_console_position = const.cmake_console_position,
       cmake_show_console = const.cmake_show_console,
-      cmake_console_size = const.cmake_console_size
+      cmake_console_size = const.cmake_console_size,
+      cmake_console_close_on_success = config.console_close_on_success,
     })
   end)
   --[[ end ]]
@@ -261,9 +265,10 @@ function cmake.install(opt)
   vim.list_extend(args, fargs)
 
   return utils.run(const.cmake_command, {}, args, {
-    cmake_console_position = const.cmake_console_position,
-    cmake_show_console     = const.cmake_show_console,
-    cmake_console_size     = const.cmake_console_size
+    cmake_console_position         = const.cmake_console_position,
+    cmake_show_console             = const.cmake_show_console,
+    cmake_console_size             = const.cmake_console_size,
+    cmake_console_close_on_success = config.console_close_on_success,
   })
 end
 

@@ -9,7 +9,8 @@ local const = {
   cmake_build_options = {},              -- it will be activated when invoke `cmake.build`
   cmake_console_position = "belowright", -- "bottom", "top"
   cmake_console_size = 10,
-  cmake_show_console = "always",         -- "always", "only_on_error"
+  cmake_console_close_on_success = false,
+  cmake_show_console = "always", -- "always", "only_on_error"
   cmake_variants_message = {
     short = { show = true },
     long = { show = true, max_length = 40 }
